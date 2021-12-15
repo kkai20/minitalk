@@ -1,0 +1,13 @@
+# object file
+*.o
+
+# library file
+*.a
+
+# execute file
+*.out
+./client
+./server
+
+# directory
+minitalk/
