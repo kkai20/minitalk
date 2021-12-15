@@ -1,17 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   serber.h                                           :+:      :+:    :+:   */
+/*   server.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: kkai <kkai@student.42tokyo.jp>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/12/15 17:03:58 by kkai              #+#    #+#             */
-/*   Updated: 2021/12/15 17:04:01 by kkai             ###   ########.fr       */
+/*   Created: 2021/12/15 18:22:19 by kkai              #+#    #+#             */
+/*   Updated: 2021/12/15 18:22:42 by kkai             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef SERBER_H
-#define SERBER_H
+#ifndef SERVER_H
+#define SERVER_H
+# include <signal.h>
+# include <signal.h>
+# include <stdio.h>
+# include <stdlib.h>
+# include <limits.h>
+# include "../libft/libft.h"
 
 
 #endif
