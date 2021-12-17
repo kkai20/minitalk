@@ -6,7 +6,7 @@
 /*   By: kkai <kkai@student.42tokyo.jp>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/15 18:22:19 by kkai              #+#    #+#             */
-/*   Updated: 2021/12/15 18:22:42 by kkai             ###   ########.fr       */
+/*   Updated: 2021/12/17 17:02:25 by kkai             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,6 @@
 # include <stdlib.h>
 # include <limits.h>
 # include "../libft/libft.h"
-
+# include "libc.h"
 
 #endif
