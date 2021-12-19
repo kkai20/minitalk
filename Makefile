@@ -7,7 +7,7 @@ CFLAGS			=	-Wall -Wextra -Werror #-g -fsanitize=address
 
 SERVER_DIR		= server_srcs
 CLIENT_DIR		= client_srcs
-SERVER_SRCS		= ${SERVER_DIR}/main.C
+SERVER_SRCS		= ${SERVER_DIR}/main.c
 CLIENT_SRCS		= ${CLIENT_DIR}/main.c
 
 
