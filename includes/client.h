@@ -6,12 +6,13 @@
 /*   By: kkai <kkai@student.42tokyo.jp>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/15 17:03:46 by kkai              #+#    #+#             */
-/*   Updated: 2021/12/19 19:03:17 by kkai             ###   ########.fr       */
+/*   Updated: 2021/12/22 21:04:06 by kkai             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef CLIENT_H
 #define CLIENT_H
+#define EOT 0x4
 # include <signal.h>
 # include <stdio.h>
 # include <stdlib.h>

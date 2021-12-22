@@ -6,7 +6,7 @@
 /*   By: kkai <kkai@student.42tokyo.jp>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/15 17:04:10 by kkai              #+#    #+#             */
-/*   Updated: 2021/12/22 18:37:08 by kkai             ###   ########.fr       */
+/*   Updated: 2021/12/22 20:57:33 by kkai             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,6 +53,23 @@ void	check_argv(int argc, char **argv)
 		exit(EXIT_FAILURE);
 	}
 }
+
+void	send_bit(pid_t server_pid, char c)
+{
+	int bit;
+	int i;
+
+	i = 0;
+	while (i < 8)
+	{
+		bit = (c >> i) & 1;
+		if (bit == 1)
+			kill(server_pid, SIGUSR1);
+		else
+			kill(server_pid, SIGUSR2);
+		}
+}
+
 // メッセージを１文字ずつビット変換関数に渡す
 void	send_text(pid_t server_pid, char *argv)
 {
@@ -61,10 +78,11 @@ void	send_text(pid_t server_pid, char *argv)
 	i = 0;
 	while (argv[i])
 	{
-		// send_bit(server_pid, argv[i]);
-		printf("%d\n, %c\n", server_pid, argv[i]);
+		send_bit(server_pid, argv[i]);
+		// printf("%d\n, %c\n", server_pid, argv[i]);
 		i++;
 	}
+	send_bit(server_pid, EOT);
 }
 
 int	main(int argc, char **argv)
