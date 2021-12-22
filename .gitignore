@@ -6,8 +6,8 @@
 
 # execute file
 *.out
-./client
-./server
+client
+server
 
 # directory
 minitalk*/
