@@ -6,7 +6,7 @@
 /*   By: kkai <kkai@student.42tokyo.jp>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/15 17:04:10 by kkai              #+#    #+#             */
-/*   Updated: 2021/12/23 14:48:28 by kkai             ###   ########.fr       */
+/*   Updated: 2021/12/23 15:46:34 by kkai             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -98,7 +98,7 @@ int	main(int argc, char **argv)
 	server_pid = ft_atoi(argv[1]);
 
 	// getpid();
-	kill(server_pid, SIGUSR1);
+	kill(server_pid, SIGUSR2);
 	// send_text(server_pid, argv[2]);
 	// １ビットずつサーバーにメッセージを送信する
 
