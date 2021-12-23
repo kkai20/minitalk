@@ -6,7 +6,7 @@
 /*   By: kkai <kkai@student.42tokyo.jp>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/15 17:04:10 by kkai              #+#    #+#             */
-/*   Updated: 2021/12/23 14:28:52 by kkai             ###   ########.fr       */
+/*   Updated: 2021/12/23 14:48:28 by kkai             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,6 +54,7 @@ void	check_argv(int argc, char **argv)
 	}
 }
 
+	// 受け取った文字列をビットに変換させる
 void	send_bit(pid_t server_pid, char c)
 {
 	int bit;
@@ -88,23 +89,16 @@ void	send_text(pid_t server_pid, char *argv)
 int	main(int argc, char **argv)
 {
 
-	// クライアントがプロセスIDを取得
 	pid_t	server_pid;
 	// (void)argc;
 
 	//コマンドライン引数の数がおかしかったらエラーを吐く
 	check_argv(argc, argv);
 
-	// プロセスidを数値に変換する
 	server_pid = ft_atoi(argv[1]);
-	// シグナルを送る
-
-	// kill((server_pid), SIGSEGV);
-	// return 0;
 
 	// getpid();
 	kill(server_pid, SIGUSR1);
-	// 受け取った文字列をビットに変換させる
 	// send_text(server_pid, argv[2]);
 	// １ビットずつサーバーにメッセージを送信する
 
