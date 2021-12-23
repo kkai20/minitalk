@@ -6,7 +6,7 @@
 /*   By: kkai <kkai@student.42tokyo.jp>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/15 17:04:10 by kkai              #+#    #+#             */
-/*   Updated: 2021/12/22 20:57:33 by kkai             ###   ########.fr       */
+/*   Updated: 2021/12/23 14:28:52 by kkai             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -103,9 +103,9 @@ int	main(int argc, char **argv)
 	// return 0;
 
 	// getpid();
-
+	kill(server_pid, SIGUSR1);
 	// 受け取った文字列をビットに変換させる
-	send_text(server_pid, argv[2]);
+	// send_text(server_pid, argv[2]);
 	// １ビットずつサーバーにメッセージを送信する
 
 	// サーバ側からのACKを受け付ける

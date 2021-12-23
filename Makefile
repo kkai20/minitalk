@@ -24,9 +24,6 @@ RM				= rm -f
 .c.o:
 		$(CC) $(CFLAGS)  -c $< -o $@
 
-$(NAME): $(OBJS)
-		ar rcs $(NAME) $(OBJS)
-
 all:	${NAME}
 
 ${NAME}: ${SERVER_NAME} ${CLIENT_NAME}
