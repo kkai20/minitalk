@@ -6,7 +6,7 @@
 /*   By: kkai <kkai@student.42tokyo.jp>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/15 17:04:10 by kkai              #+#    #+#             */
-/*   Updated: 2021/12/23 15:46:34 by kkai             ###   ########.fr       */
+/*   Updated: 2021/12/24 14:14:33 by kkai             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,6 +63,7 @@ void	send_bit(pid_t server_pid, char c)
 	i = 0;
 	while (i < 8)
 	{
+		usleep(50);
 		bit = (c >> i) & 1;
 		if (bit == 1)
 			kill(server_pid, SIGUSR1);
@@ -98,8 +99,8 @@ int	main(int argc, char **argv)
 	server_pid = ft_atoi(argv[1]);
 
 	// getpid();
-	kill(server_pid, SIGUSR2);
-	// send_text(server_pid, argv[2]);
+	// kill(server_pid, SIGUSR2);
+	send_text(server_pid, argv[2]);
 	// １ビットずつサーバーにメッセージを送信する
 
 	// サーバ側からのACKを受け付ける
