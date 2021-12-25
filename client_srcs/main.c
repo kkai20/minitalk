@@ -6,7 +6,7 @@
 /*   By: kkai <kkai@student.42tokyo.jp>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/15 17:04:10 by kkai              #+#    #+#             */
-/*   Updated: 2021/12/24 14:14:33 by kkai             ###   ########.fr       */
+/*   Updated: 2021/12/25 15:54:05 by kkai             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,7 +69,8 @@ void	send_bit(pid_t server_pid, char c)
 			kill(server_pid, SIGUSR1);
 		else
 			kill(server_pid, SIGUSR2);
-		}
+		i++;
+	}
 }
 
 // メッセージを１文字ずつビット変換関数に渡す
@@ -102,7 +103,6 @@ int	main(int argc, char **argv)
 	// kill(server_pid, SIGUSR2);
 	send_text(server_pid, argv[2]);
 	// １ビットずつサーバーにメッセージを送信する
-
 	// サーバ側からのACKを受け付ける
 
 	// データを最後まで送ったら、文字列の最後にEOTをつける
