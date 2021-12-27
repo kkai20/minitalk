@@ -6,11 +6,17 @@
 /*   By: kkai <kkai@student.42tokyo.jp>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/15 17:04:10 by kkai              #+#    #+#             */
-/*   Updated: 2021/12/25 15:54:05 by kkai             ###   ########.fr       */
+/*   Updated: 2021/12/27 23:37:29 by kkai             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/client.h"
+
+void	error_msg(char *msg)
+{
+	ft_putendl_fd(msg, STDOUT_FILENO);
+	exit(EXIT_FAILURE);
+}
 
 int	check_pid(char *num)
 {
@@ -38,23 +44,13 @@ int	check_string(char *msg)
 void	check_argv(int argc, char **argv)
 {
 	if (argc != 3)
-	{
-		ft_putendl_fd("Please set process id and messages", 1);
-		exit(EXIT_FAILURE);
-	}
+		error_msg("Please set process id and messages");
 	if (check_pid(argv[1]) == FALSE)
-	{
-		ft_putendl_fd("process id is invalid", 1);
-		exit(EXIT_FAILURE);
-	}
+		error_msg("process id is invalid");
 	if (check_string(argv[2]) == FALSE)
-	{
-		ft_putendl_fd("messages is invalid", 1);
-		exit(EXIT_FAILURE);
-	}
+		error_msg("messages is invalid");
 }
 
-	// 受け取った文字列をビットに変換させる
 void	send_bit(pid_t server_pid, char c)
 {
 	int bit;
@@ -73,7 +69,6 @@ void	send_bit(pid_t server_pid, char c)
 	}
 }
 
-// メッセージを１文字ずつビット変換関数に渡す
 void	send_text(pid_t server_pid, char *argv)
 {
 	int		i;
@@ -82,31 +77,35 @@ void	send_text(pid_t server_pid, char *argv)
 	while (argv[i])
 	{
 		send_bit(server_pid, argv[i]);
-		// printf("%d\n, %c\n", server_pid, argv[i]);
 		i++;
 	}
 	send_bit(server_pid, EOT);
 }
 
+void	handler(int sig)
+{
+	if (sig == SIGUSR1)
+		ft_putendl_fd("Success sent message", STDOUT_FILENO);
+}
+
+void	receive_ack(void)
+{
+	struct sigaction 	act;
+
+	ft_bzero(&act, sizeof(sigaction));
+	act.sa_handler = handler;
+	sigemptyset(&act.sa_mask);
+	if (sigaction(SIGUSR1, &act, NULL) == -1)
+		error_msg("signal error");
+}
+
 int	main(int argc, char **argv)
 {
-
 	pid_t	server_pid;
-	// (void)argc;
 
-	//コマンドライン引数の数がおかしかったらエラーを吐く
 	check_argv(argc, argv);
-
 	server_pid = ft_atoi(argv[1]);
-
-	// getpid();
-	// kill(server_pid, SIGUSR2);
+	receive_ack();
 	send_text(server_pid, argv[2]);
-	// １ビットずつサーバーにメッセージを送信する
-	// サーバ側からのACKを受け付ける
-
-	// データを最後まで送ったら、文字列の最後にEOTをつける
-
-	// サーバー側からのACKを受け付ける
 	return (0);
 }
