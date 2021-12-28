@@ -6,7 +6,7 @@
 /*   By: kkai <kkai@student.42tokyo.jp>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/28 13:38:50 by kkai              #+#    #+#             */
-/*   Updated: 2021/12/28 15:52:54 by kkai             ###   ########.fr       */
+/*   Updated: 2021/12/28 16:07:35 by kkai             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ static void	convert_bit(int bit, pid_t client_pid)
 		msg |= (bit << i);
 		i++;
 	}
-	if(i == 8)
+	if (i == 8)
 	{
 		buff[j] = msg;
 		if (buff[j] == EOT || j > SIZE - 1 )
@@ -60,8 +60,7 @@ static void	handler(int sig, siginfo_t *info, void *q)
 
 void	receive_ack(void)
 {
-	struct sigaction act;
-
+	struct sigaction	act;
 
 	ft_bzero(&act, sizeof(struct sigaction));
 	act.sa_sigaction = handler;

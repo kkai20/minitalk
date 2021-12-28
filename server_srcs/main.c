@@ -6,7 +6,7 @@
 /*   By: kkai <kkai@student.42tokyo.jp>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/18 15:13:45 by kkai              #+#    #+#             */
-/*   Updated: 2021/12/28 13:44:57 by kkai             ###   ########.fr       */
+/*   Updated: 2021/12/28 16:06:34 by kkai             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ void	print_pid(void)
 	ft_putendl_fd("", 1);
 }
 
-int main()
+int	main(void)
 {
 	print_pid();
 	receive_ack();
