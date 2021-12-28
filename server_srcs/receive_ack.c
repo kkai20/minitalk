@@ -6,7 +6,7 @@
 /*   By: kkai <kkai@student.42tokyo.jp>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/28 13:38:50 by kkai              #+#    #+#             */
-/*   Updated: 2021/12/28 16:07:35 by kkai             ###   ########.fr       */
+/*   Updated: 2021/12/28 17:47:53 by kkai             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,7 @@ static void	print_msg(char *buff, int j, pid_t client_pid)
 	{
 		ft_putendl_fd("", STDOUT_FILENO);
 		kill(client_pid, SIGUSR1);
+
 	}
 }
 

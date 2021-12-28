@@ -6,7 +6,7 @@
 /*   By: kkai <kkai@student.42tokyo.jp>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/15 17:03:46 by kkai              #+#    #+#             */
-/*   Updated: 2021/12/28 15:23:28 by kkai             ###   ########.fr       */
+/*   Updated: 2021/12/28 18:35:49 by kkai             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,8 +22,10 @@
 # include <libc.h>
 # include <sysexits.h>
 
-void send_text(pid_t server_pid, char *argv);
-void receive_ack(void);
-void error_msg(char *msg);
+void	send_text(pid_t server_pid, char *argv);
+void	receive_ack(void);
+void	error_msg(char *msg);
+
+extern int	global_flag;
 
 #endif

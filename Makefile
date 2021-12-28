@@ -1,17 +1,19 @@
-NAME			=	minitalk
+NAME			= minitalk
 SERVER_NAME		= server
 CLIENT_NAME		= client
 SRCS			=
-CC				=	gcc
-CFLAGS			=	-Wall -Wextra -Werror #-g -fsanitize=address
+CC				= gcc
+CFLAGS			= -Wall -Wextra -Werror #-g -fsanitize=address
 
-SERVER_DIR		= server_srcs
-CLIENT_DIR		= client_srcs
-SERVER_SRCS		= ${SERVER_DIR}/main.c
-CLIENT_SRCS		= ${CLIENT_DIR}/main.c
+SERVER_DIR		= ./server_srcs
+CLIENT_DIR		= ./client_srcs
+SERVER_SRCS		= ${SERVER_DIR}/main.c \
+				${SERVER_DIR}/receive_ack.c
+CLIENT_SRCS		= ${CLIENT_DIR}/main.c \
+				${CLIENT_DIR}/sent_text.c
 
 
-LIBFT_DIR		= libft
+LIBFT_DIR		= ./libft
 LIBFT			= ${LIBFT_DIR}/libft.a
 SERVER_OBJS		= ${SERVER_SRCS:.c=.o}
 SERVER_BOBJS	= ${SERVER_BSRCS:.c=.o}
@@ -20,9 +22,6 @@ CLIENT_BOBJS	= ${CLIENT_BSRCS:.c=.o}
 INCLUDES_DIR	= includes
 INCLUDES		= -I./${INCLUDES_DIR}
 RM				= rm -f
-
-.c.o:
-		$(CC) $(CFLAGS)  -c $< -o $@
 
 all:	${NAME}
 
