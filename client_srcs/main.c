@@ -6,7 +6,7 @@
 /*   By: kkai <kkai@student.42tokyo.jp>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/15 17:04:10 by kkai              #+#    #+#             */
-/*   Updated: 2021/12/28 13:35:31 by kkai             ###   ########.fr       */
+/*   Updated: 2021/12/28 15:23:10 by kkai             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,15 @@ void	error_msg(char *msg)
 	exit(EXIT_FAILURE);
 }
 
-int	check_pid(char *num)
+static int	check_string(char *msg)
+{
+	if (*msg == '\0')
+		return (0);
+	return (1);
+}
+
+
+static int	check_pid(char *num)
 {
 	int i;
 
@@ -34,14 +42,7 @@ int	check_pid(char *num)
 	return (0);
 }
 
-int	check_string(char *msg)
-{
-	if (*msg == '\0')
-		return (0);
-	return (1);
-}
-
-void	check_argv(int argc, char **argv)
+static void	check_argv(int argc, char **argv)
 {
 	if (argc != 3)
 		error_msg("Please set process id and messages");
@@ -49,56 +50,6 @@ void	check_argv(int argc, char **argv)
 		error_msg("process id is invalid");
 	if (check_string(argv[2]) == 0)
 		error_msg("messages is invalid");
-}
-
-void	send_bit(pid_t server_pid, char c)
-{
-	int bit;
-	int i;
-
-	i = 0;
-	while (i < 8)
-	{
-		usleep(50);
-		bit = (c >> i) & 1;
-		if (bit == 1)
-			if(kill(server_pid, SIGUSR1) == -1)
-				error_msg("kill eroor");
-		else
-			if(kill(server_pid, SIGUSR2) == -1)
-				error_msg("kill eroor");
-		i++;
-	}
-}
-
-void	send_text(pid_t server_pid, char *argv)
-{
-	int		i;
-
-	i = 0;
-	while (argv[i])
-	{
-		send_bit(server_pid, argv[i]);
-		i++;
-	}
-	send_bit(server_pid, EOT);
-}
-
-void	handler(int sig)
-{
-	if (sig == SIGUSR1)
-		ft_putendl_fd("Success sent message", STDOUT_FILENO);
-}
-
-void	receive_ack(void)
-{
-	struct sigaction 	act;
-
-	ft_bzero(&act, sizeof(sigaction));
-	act.sa_handler = handler;
-	sigemptyset(&act.sa_mask);
-	if (sigaction(SIGUSR1, &act, NULL) == -1)
-		error_msg("signal error");
 }
 
 int	main(int argc, char **argv)
