@@ -6,7 +6,7 @@
 /*   By: kkai <kkai@student.42tokyo.jp>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/28 13:38:50 by kkai              #+#    #+#             */
-/*   Updated: 2021/12/29 15:26:31 by kkai             ###   ########.fr       */
+/*   Updated: 2021/12/29 16:13:57 by kkai             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,9 +42,10 @@ static void	convert_bit(int bit, pid_t client_pid)
 		buff[j] = msg;
 		if (buff[j] == EOT || j > SIZE - 1 )
 		{
+			buff[j] = '\0';
 			print_msg(buff, j, client_pid);
 			j = -1;
-			// ft_bzero(buff, SIZE);
+
 		}
 		j++;
 		i = 0;
