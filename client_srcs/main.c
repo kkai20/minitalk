@@ -6,15 +6,15 @@
 /*   By: kkai <kkai@student.42tokyo.jp>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/15 17:04:10 by kkai              #+#    #+#             */
-/*   Updated: 2021/12/29 14:46:50 by kkai             ###   ########.fr       */
+/*   Updated: 2021/12/29 17:14:16 by kkai             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/client.h"
 
-int global_flag;
+int	g_flag;
 
-void error_msg(char *msg)
+void	error_msg(char *msg)
 {
 	ft_putendl_fd(msg, STDOUT_FILENO);
 	exit(EXIT_FAILURE);
@@ -57,13 +57,13 @@ int	main(int argc, char **argv)
 {
 	pid_t	server_pid;
 
-	global_flag = 0;
+	g_flag = 0;
 	check_argv(argc, argv);
 	server_pid = (pid_t)ft_atoi(argv[1]);
 	receive_ack();
 	send_text(server_pid, argv[2]);
 	sleep(5);
-	if (global_flag == 0)
+	if (g_flag == 0)
 		error_msg("time out");
 	return (0);
 }
