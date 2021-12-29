@@ -6,7 +6,7 @@
 /*   By: kkai <kkai@student.42tokyo.jp>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/15 17:03:46 by kkai              #+#    #+#             */
-/*   Updated: 2021/12/28 18:35:49 by kkai             ###   ########.fr       */
+/*   Updated: 2021/12/29 17:17:54 by kkai             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,6 @@ void	send_text(pid_t server_pid, char *argv);
 void	receive_ack(void);
 void	error_msg(char *msg);
 
-extern int	global_flag;
+extern int	g_flag;
 
 #endif

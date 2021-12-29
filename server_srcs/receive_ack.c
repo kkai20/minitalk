@@ -6,7 +6,7 @@
 /*   By: kkai <kkai@student.42tokyo.jp>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/28 13:38:50 by kkai              #+#    #+#             */
-/*   Updated: 2021/12/29 17:04:10 by kkai             ###   ########.fr       */
+/*   Updated: 2021/12/29 17:23:08 by kkai             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,9 +14,12 @@
 
 static void	print_msg(char *buff, int j, pid_t client_pid)
 {
-	if (buff[j] == '\0')
+	if (buff[j] != EOT)
+	{
+		buff[j + 1] = '\0';
 		ft_putstr_fd(buff, STDOUT_FILENO);
-	if (buff[j] == EOT)
+	}
+	else
 	{
 		buff[j] = '\0';
 		ft_putendl_fd(buff, STDOUT_FILENO);
@@ -31,7 +34,6 @@ static void	convert_bit(int bit, pid_t client_pid)
 	static int	i;
 	static int	j;
 
-	printf("bit--------%d\n", bit);
 	if (i < 8)
 	{
 		msg |= (bit << i);
@@ -39,16 +41,9 @@ static void	convert_bit(int bit, pid_t client_pid)
 	}
 	if (i == 8)
 	{
-		printf("EOT-------%c\n", msg);
 		buff[j] = msg;
-		if (buff[j] == EOT)
+		if (buff[j] == EOT || j == SIZE - 2)
 		{
-			print_msg(buff, j, client_pid);
-			j = -1;
-		}
-		if (j == SIZE - 2 )
-		{
-			buff[j + 1] = '\0';
 			print_msg(buff, j, client_pid);
 			j = -1;
 		}
