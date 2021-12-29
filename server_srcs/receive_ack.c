@@ -6,7 +6,7 @@
 /*   By: kkai <kkai@student.42tokyo.jp>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/28 13:38:50 by kkai              #+#    #+#             */
-/*   Updated: 2021/12/28 17:47:53 by kkai             ###   ########.fr       */
+/*   Updated: 2021/12/29 15:26:31 by kkai             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,7 @@ static void	convert_bit(int bit, pid_t client_pid)
 	static int	i;
 	static int	j;
 
+	printf("bit--------%d\n", bit);
 	if (i < 8)
 	{
 		msg |= (bit << i);
@@ -37,12 +38,13 @@ static void	convert_bit(int bit, pid_t client_pid)
 	}
 	if (i == 8)
 	{
+		printf("EOT-------%c\n", msg);
 		buff[j] = msg;
 		if (buff[j] == EOT || j > SIZE - 1 )
 		{
 			print_msg(buff, j, client_pid);
 			j = -1;
-			ft_bzero(buff, SIZE);
+			// ft_bzero(buff, SIZE);
 		}
 		j++;
 		i = 0;
@@ -59,7 +61,7 @@ static void	handler(int sig, siginfo_t *info, void *q)
 		convert_bit(0, info->si_pid);
 }
 
-void	receive_ack(void)
+void	set_sigaction(void)
 {
 	struct sigaction	act;
 

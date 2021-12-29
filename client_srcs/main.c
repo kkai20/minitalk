@@ -6,7 +6,7 @@
 /*   By: kkai <kkai@student.42tokyo.jp>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/15 17:04:10 by kkai              #+#    #+#             */
-/*   Updated: 2021/12/28 19:01:14 by kkai             ###   ########.fr       */
+/*   Updated: 2021/12/29 14:46:50 by kkai             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,9 +62,8 @@ int	main(int argc, char **argv)
 	server_pid = (pid_t)ft_atoi(argv[1]);
 	receive_ack();
 	send_text(server_pid, argv[2]);
-	if (!sleep(5))
+	sleep(5);
+	if (global_flag == 0)
 		error_msg("time out");
-	// if (global_flag == 0)
-		// error_msg("session error");
 	return (0);
 }
