@@ -25,6 +25,8 @@ RM				= rm -f
 
 all:	${NAME}
 
+bonus:	${NAME}
+
 ${NAME}: ${SERVER_NAME} ${CLIENT_NAME}
 
 ${SERVER_NAME}: ${SERVER_OBJS} ${LIBFT}

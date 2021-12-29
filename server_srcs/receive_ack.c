@@ -6,7 +6,7 @@
 /*   By: kkai <kkai@student.42tokyo.jp>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/28 13:38:50 by kkai              #+#    #+#             */
-/*   Updated: 2021/12/29 17:23:08 by kkai             ###   ########.fr       */
+/*   Updated: 2021/12/30 00:22:37 by kkai             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,12 +17,12 @@ static void	print_msg(char *buff, int j, pid_t client_pid)
 	if (buff[j] != EOT)
 	{
 		buff[j + 1] = '\0';
-		ft_putstr_fd(buff, STDOUT_FILENO);
+		write(STDOUT_FILENO, buff, j);
 	}
 	else
 	{
 		buff[j] = '\0';
-		ft_putendl_fd(buff, STDOUT_FILENO);
+		write(STDOUT_FILENO, buff, j);
 		kill(client_pid, SIGUSR1);
 	}
 }
@@ -70,6 +70,7 @@ void	set_sigaction(void)
 	act.sa_sigaction = handler;
 	sigemptyset(&act.sa_mask);
 	act.sa_flags = SA_SIGINFO;
-	sigaction(SIGUSR1, &act, NULL);
-	sigaction(SIGUSR2, &act, NULL);
+	if (sigaction(SIGUSR1, &act, NULL) == -1 \
+	|| sigaction(SIGUSR2, &act, NULL) == -1)
+		error_msg("sigaction error!");
 }

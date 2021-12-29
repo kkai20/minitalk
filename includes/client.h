@@ -6,7 +6,7 @@
 /*   By: kkai <kkai@student.42tokyo.jp>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/15 17:03:46 by kkai              #+#    #+#             */
-/*   Updated: 2021/12/29 17:17:54 by kkai             ###   ########.fr       */
+/*   Updated: 2021/12/29 23:43:28 by kkai             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,6 @@
 # include <stdlib.h>
 # include "../libft/libft.h"
 # include <limits.h>
-# include <libc.h>
 # include <sysexits.h>
 
 void	send_text(pid_t server_pid, char *argv);
