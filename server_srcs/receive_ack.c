@@ -6,7 +6,7 @@
 /*   By: kkai <kkai@student.42tokyo.jp>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/28 13:38:50 by kkai              #+#    #+#             */
-/*   Updated: 2021/12/29 16:26:02 by kkai             ###   ########.fr       */
+/*   Updated: 2021/12/29 16:32:52 by kkai             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ static void	print_msg(char *buff, int j, pid_t client_pid)
 		ft_putstr_fd(buff, STDOUT_FILENO);
 	if (buff[j] == EOT)
 	{
-		ft_putendl_fd("", STDOUT_FILENO);
+		ft_putendl_fd(buff, STDOUT_FILENO);
 		kill(client_pid, SIGUSR1);
 	}
 }
