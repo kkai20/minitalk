@@ -6,7 +6,7 @@
 /*   By: kkai <kkai@student.42tokyo.jp>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/28 13:46:04 by kkai              #+#    #+#             */
-/*   Updated: 2021/12/29 17:25:18 by kkai             ###   ########.fr       */
+/*   Updated: 2021/12/29 21:00:25 by kkai             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,11 +51,9 @@ void	send_text(pid_t server_pid, char *argv)
 
 static void	handler(int sig)
 {
-	if (sig == SIGUSR1)
-	{
-		g_flag = 1;
-		ft_putendl_fd("Success sent message", STDOUT_FILENO);
-	}
+	(int)sig;
+	g_flag = 1;
+	ft_putendl_fd("Success sent message", STDOUT_FILENO);
 }
 
 void	receive_ack(void)
