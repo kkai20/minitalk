@@ -6,23 +6,23 @@
 /*   By: kkai <kkai@student.42tokyo.jp>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/28 13:38:50 by kkai              #+#    #+#             */
-/*   Updated: 2022/01/03 18:06:28 by kkai             ###   ########.fr       */
+/*   Updated: 2022/01/03 18:14:16 by kkai             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/server.h"
 
-static void	print_msg(char *buff, int j, pid_t client_pid)
+static void	print_msg(char *buff, int bytes, pid_t client_pid)
 {
-	printf("j ----%d", j);
-	if (buff[j] == '\0')
+	printf("bytes ----%d", bytes);
+	if (buff[bytes - 1] == '\0')
 	{
-		write(STDOUT_FILENO, buff, j - 1);
+		write(STDOUT_FILENO, buff, bytes - 1);
 		kill(client_pid, SIGUSR1);
 	}
 	else
 	{
-		write(STDOUT_FILENO, buff, j);
+		write(STDOUT_FILENO, buff, bytes);
 	}
 }
 
@@ -31,7 +31,7 @@ static void	convert_bit(int bit, pid_t client_pid)
 	static char	msg;
 	static char	buff[SIZE];
 	static int	i;
-	static int	j;
+	static int	bytes;
 
 	if (i < 8)
 	{
@@ -40,14 +40,13 @@ static void	convert_bit(int bit, pid_t client_pid)
 	}
 	if (i == 8)
 	{
-		buff[j] = msg;
-		j++;
-		if (msg == '\0' || j >= SIZE)
+		buff[bytes] = msg;
+		bytes++;
+		if (msg == '\0' || bytes >= SIZE)
 		{
-			print_msg(buff, j, client_pid);
-			j = 0;
+			print_msg(buff, bytes, client_pid);
+			bytes = 0;
 		}
-		j++;
 		i = 0;
 		msg = 0;
 	}
