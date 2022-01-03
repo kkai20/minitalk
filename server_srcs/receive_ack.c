@@ -6,25 +6,25 @@
 /*   By: kkai <kkai@student.42tokyo.jp>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/28 13:38:50 by kkai              #+#    #+#             */
-/*   Updated: 2022/01/03 18:14:16 by kkai             ###   ########.fr       */
+/*   Updated: 2022/01/03 18:26:08 by kkai             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/server.h"
 
-static void	print_msg(char *buff, int bytes, pid_t client_pid)
-{
-	printf("bytes ----%d", bytes);
-	if (buff[bytes - 1] == '\0')
-	{
-		write(STDOUT_FILENO, buff, bytes - 1);
-		kill(client_pid, SIGUSR1);
-	}
-	else
-	{
-		write(STDOUT_FILENO, buff, bytes);
-	}
-}
+// static void	print_msg(char *buff, int bytes, pid_t client_pid)
+// {
+// 	printf("bytes ----%d", bytes);
+// 	if (buff[bytes - 1] == '\0')
+// 	{
+// 		write(STDOUT_FILENO, buff, bytes - 1);
+// 		kill(client_pid, SIGUSR1);
+// 	}
+// 	else
+// 	{
+// 		write(STDOUT_FILENO, buff, bytes);
+// 	}
+//  }
 
 static void	convert_bit(int bit, pid_t client_pid)
 {
@@ -42,10 +42,15 @@ static void	convert_bit(int bit, pid_t client_pid)
 	{
 		buff[bytes] = msg;
 		bytes++;
-		if (msg == '\0' || bytes >= SIZE)
+		if (msg == '\0')
 		{
-			print_msg(buff, bytes, client_pid);
+			write(STDOUT_FILENO, buff, bytes -1);
 			bytes = 0;
+			kill(client_pid, SIGUSR1);
+		}
+		else if (bytes >= SIZE)
+		{
+			write(STDOUT_FILENO, buff, SIZE);
 		}
 		i = 0;
 		msg = 0;
