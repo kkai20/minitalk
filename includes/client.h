@@ -6,13 +6,12 @@
 /*   By: kkai <kkai@student.42tokyo.jp>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/15 17:03:46 by kkai              #+#    #+#             */
-/*   Updated: 2021/12/29 23:43:28 by kkai             ###   ########.fr       */
+/*   Updated: 2022/01/03 18:58:17 by kkai             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef CLIENT_H
 # define CLIENT_H
-# define EOT 0x4
 
 # include <signal.h>
 # include <stdio.h>
@@ -20,6 +19,7 @@
 # include "../libft/libft.h"
 # include <limits.h>
 # include <sysexits.h>
+# include <stdbool.h>
 
 void	send_text(pid_t server_pid, char *argv);
 void	receive_ack(void);

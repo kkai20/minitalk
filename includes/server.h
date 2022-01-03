@@ -6,13 +6,12 @@
 /*   By: kkai <kkai@student.42tokyo.jp>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/15 18:22:19 by kkai              #+#    #+#             */
-/*   Updated: 2021/12/29 23:43:32 by kkai             ###   ########.fr       */
+/*   Updated: 2022/01/03 18:58:24 by kkai             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef SERVER_H
 # define SERVER_H
-# define EOT 0x4
 # define SIZE 10
 
 # include <signal.h>
