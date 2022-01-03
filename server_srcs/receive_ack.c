@@ -6,7 +6,7 @@
 /*   By: kkai <kkai@student.42tokyo.jp>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/28 13:38:50 by kkai              #+#    #+#             */
-/*   Updated: 2022/01/03 19:09:34 by kkai             ###   ########.fr       */
+/*   Updated: 2022/01/03 19:10:30 by kkai             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,6 @@ static void	convert_bit(int bit, pid_t client_pid)
 		if (msg == '\0')
 		{
 			write(STDOUT_FILENO, buff, bytes - 1);
-			printf("hello\n");
 			bytes = 0;
 			kill(client_pid, SIGUSR1);
 		}
