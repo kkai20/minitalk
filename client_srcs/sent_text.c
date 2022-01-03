@@ -6,7 +6,7 @@
 /*   By: kkai <kkai@student.42tokyo.jp>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/28 13:46:04 by kkai              #+#    #+#             */
-/*   Updated: 2022/01/03 17:58:03 by kkai             ###   ########.fr       */
+/*   Updated: 2022/01/03 19:01:27 by kkai             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,15 +41,13 @@ void	send_text(pid_t server_pid, char *argv)
 	int		i;
 
 	i = 0;
-	while (argv[i])
+	while (true)
 	{
 		send_bit(server_pid, argv[i]);
 		if (argv[i] == '\0')
 			break;
 		i++;
-
 	}
-	// send_bit(server_pid, '\0');
 }
 
 static void	handler(int sig)
