@@ -6,7 +6,7 @@
 /*   By: kkai <kkai@student.42tokyo.jp>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/28 13:38:50 by kkai              #+#    #+#             */
-/*   Updated: 2021/12/30 00:22:37 by kkai             ###   ########.fr       */
+/*   Updated: 2022/01/03 18:06:28 by kkai             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,16 +14,15 @@
 
 static void	print_msg(char *buff, int j, pid_t client_pid)
 {
-	if (buff[j] != EOT)
+	printf("j ----%d", j);
+	if (buff[j] == '\0')
 	{
-		buff[j + 1] = '\0';
-		write(STDOUT_FILENO, buff, j);
+		write(STDOUT_FILENO, buff, j - 1);
+		kill(client_pid, SIGUSR1);
 	}
 	else
 	{
-		buff[j] = '\0';
 		write(STDOUT_FILENO, buff, j);
-		kill(client_pid, SIGUSR1);
 	}
 }
 
@@ -42,10 +41,11 @@ static void	convert_bit(int bit, pid_t client_pid)
 	if (i == 8)
 	{
 		buff[j] = msg;
-		if (buff[j] == EOT || j == SIZE - 2)
+		j++;
+		if (msg == '\0' || j >= SIZE)
 		{
 			print_msg(buff, j, client_pid);
-			j = -1;
+			j = 0;
 		}
 		j++;
 		i = 0;
